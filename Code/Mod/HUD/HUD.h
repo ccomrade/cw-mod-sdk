@@ -61,7 +61,6 @@ class CHUDScopes;
 class CHUDCrosshair;
 class CHUDSilhouettes;
 class CHUDTagNames;
-class CLCDWrapper;
 class CWeapon;
 
 //-----------------------------------------------------------------------------------------------------

@@ -34,7 +34,6 @@
 
 struct ISystem;
 struct IConsole;
-struct ILCD;
 
 class	CScriptBind_Actor;
 class CScriptBind_Item;
@@ -61,7 +60,6 @@ class CItemSharedParamsList;
 class CSPAnalyst;
 class CSoundMoods;
 class CLaptopUtil;
-class CLCDWrapper;
 class CDownloadTask;
 
 // when you add stuff here, also update in CGame::RegisterGameObjectEvents
@@ -283,7 +281,6 @@ protected:
 	CBulletTime						*m_pBulletTime;
 	CSoundMoods						*m_pSoundMoods;
 	CLaptopUtil						*m_pLaptopUtil;
-	ILCD									*m_pLCD;
 
 	typedef std::map<string, string, stl::less_stricmp<string> > TLevelMapMap;
 	TLevelMapMap m_mapNames;

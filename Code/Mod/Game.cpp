@@ -41,7 +41,6 @@
 #include "ScriptBind_Game.h"
 #include "HUD/ScriptBind_HUD.h"
 #include "LaptopUtil.h"
-#include "LCD/LCDWrapper.h"
 
 #include "GameFactory.h"
 
@@ -316,23 +315,6 @@ bool CGame::Init(IGameFramework *pFramework)
 	if(!m_pLaptopUtil)
 		m_pLaptopUtil = new CLaptopUtil;
 
-	if (!m_pLCD)
-	{
-#ifdef USE_G15_LCD
-		if(gEnv->pSystem->IsDedicated())
-			m_pLCD = new CNullLCD();
-		else
-			m_pLCD = new CG15LCD();
-#else
-		m_pLCD = new CNullLCD();
-#endif
-
-		if (!m_pLCD->Init())
-		{
-			SAFE_DELETE(m_pLCD);
-		}
-	}
-
 	if (!gEnv->pSystem->IsDedicated())
 	{
 		m_pFlashMenuObject = new CFlashMenuObject;
@@ -423,9 +405,6 @@ int CGame::Update(bool haveFocus, unsigned int updateFlags)
 	m_pFramework->GetIActionMapManager()->EnableActionMap("debug", m_inDevMode);
 
 	CheckReloadLevel();
-
-	if (m_pLCD)
-		m_pLCD->Update(frameTime);
 
 	if(m_pDownloadTask)
 		m_pDownloadTask->Update();

@@ -76,8 +76,6 @@
 #define EXCLUDE_ILG_SDK
 #define _DATAPROBE
 
-//#define USE_G15_LCD
-
 #include "ProjectDefinesInclude.h"
 
 #endif // PROJECTDEFINES_H
