@@ -1983,7 +1983,8 @@ bool CWeapon::SetAspectProfile( EEntityAspects aspect, uint8 profile )
 			m_fm->Activate(true);
 
 			if (IsServer() && GetOwnerId())
-				m_pGameplayRecorder->Event(GetOwner(), GameplayEvent(eGE_WeaponFireModeChanged, m_fm->GetName(), profile, (void *)GetEntityId()));
+				m_pGameplayRecorder->Event(GetOwner(), GameplayEvent(eGE_WeaponFireModeChanged,
+					m_fm->GetName(), profile, reinterpret_cast<void*>(static_cast<uintptr_t>(GetEntityId()))));
 		}
 
 		return true;

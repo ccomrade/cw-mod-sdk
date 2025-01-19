@@ -114,13 +114,15 @@ void CWeapon::NetMeleeAttack(bool weaponMelee, const Vec3 &pos, const Vec3 &dir)
 	{
 		m_melee->NetShootEx(pos, dir, ZERO, ZERO, 1.0f, 0);
 		if (IsServer())
-			m_pGameplayRecorder->Event(GetOwner(), GameplayEvent(eGE_WeaponMelee, 0, 0, (void *)GetEntityId()));
+			m_pGameplayRecorder->Event(GetOwner(), GameplayEvent(eGE_WeaponMelee, 0, 0,
+				reinterpret_cast<void*>(static_cast<uintptr_t>(GetEntityId()))));
 	}
 	else if (m_fm)
 	{
 		m_fm->NetShootEx(pos, dir, ZERO, ZERO, 1.0f, 0);
 		if (IsServer())
-			m_pGameplayRecorder->Event(GetOwner(), GameplayEvent(eGE_WeaponMelee, 0, 0, (void *)GetEntityId()));
+			m_pGameplayRecorder->Event(GetOwner(), GameplayEvent(eGE_WeaponMelee, 0, 0,
+				reinterpret_cast<void*>(static_cast<uintptr_t>(GetEntityId()))));
 	}
 }
 
@@ -555,7 +557,8 @@ IMPLEMENT_RMI(CWeapon, SvRequestMeleeAttack)
 				pGameRules->ValidateShot(pActor->GetEntityId(), GetEntityId(), params.seq, 0);
 		}
 
-		m_pGameplayRecorder->Event(GetOwner(), GameplayEvent(eGE_WeaponMelee, 0, 0, (void *)GetEntityId()));
+		m_pGameplayRecorder->Event(GetOwner(), GameplayEvent(eGE_WeaponMelee, 0, 0,
+			reinterpret_cast<void*>(static_cast<uintptr_t>(GetEntityId()))));
 	}
 
 	return true;
@@ -593,7 +596,8 @@ IMPLEMENT_RMI(CWeapon, SvRequestZoom)
 		int event=eGE_ZoomedOut;
 		if (params.fov<0.99f)
 			event=eGE_ZoomedIn;
-		m_pGameplayRecorder->Event(GetOwner(), GameplayEvent(event, 0, 0, (void *)GetEntityId()));
+		m_pGameplayRecorder->Event(GetOwner(), GameplayEvent(event, 0, 0,
+			reinterpret_cast<void*>(static_cast<uintptr_t>(GetEntityId()))));
 	}
 
 	return true;
@@ -646,7 +650,8 @@ IMPLEMENT_RMI(CWeapon, SvRequestReload)
 		if (!isLocal && m_fm)
 			m_fm->Reload(0);
 
-		m_pGameplayRecorder->Event(GetOwner(), GameplayEvent(eGE_WeaponReload, 0, 0, (void *)GetEntityId()));
+		m_pGameplayRecorder->Event(GetOwner(), GameplayEvent(eGE_WeaponReload, 0, 0,
+			reinterpret_cast<void*>(static_cast<uintptr_t>(GetEntityId()))));
 	}
 
 	return true;

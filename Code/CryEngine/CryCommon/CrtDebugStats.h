@@ -15,7 +15,7 @@
 
 #define nNoMansLandSize 4
 
-typedef struct _CrtMemBlockHeader
+struct _CrtMemBlockHeader
 {
         struct _CrtMemBlockHeader * pBlockHeaderNext;
         struct _CrtMemBlockHeader * pBlockHeaderPrev;
@@ -29,7 +29,7 @@ typedef struct _CrtMemBlockHeader
          *  unsigned char           data[nDataSize];
          *  unsigned char           anotherGap[nNoMansLandSize];
          */
-} _CrtMemBlockHeader;
+};
 
 struct SFileInfo
 {

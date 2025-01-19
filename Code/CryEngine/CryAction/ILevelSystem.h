@@ -8,7 +8,7 @@
   
  -------------------------------------------------------------------------
   History:
-  - 18:8:2004   11:22 : Created by Márcio Martins
+  - 18:8:2004   11:22 : Created by Mï¿½rcio Martins
 
 *************************************************************************/
 #ifndef __ILEVELSYSTEM_H__
@@ -48,12 +48,12 @@ struct ILevelInfo
 public:
 	typedef std::vector<string>	TStringVec;
 
-	typedef struct
+	struct TGameTypeInfo
 	{
 		string	name;
 		string	xmlFile;
 		int			cgfCount;
-	} TGameTypeInfo;
+	};
 
 	virtual const char *GetName() const = 0;
 	virtual const char *GetPath() const = 0;

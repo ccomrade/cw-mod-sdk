@@ -811,8 +811,7 @@ namespace std
 {
 
 	template <class TL, size_t BS>
-	struct less< CConfigurableVariant<TL,BS> > :
-		public binary_function<CConfigurableVariant<TL,BS>, CConfigurableVariant<TL,BS>, bool>
+	struct less< CConfigurableVariant<TL,BS> >
 	{
 		class CComparatorVisitor
 		{

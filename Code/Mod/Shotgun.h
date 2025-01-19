@@ -12,7 +12,7 @@ class CShotgun :
 	class ScheduleReload;
 
 protected:
-	typedef struct SShotgunParams
+	struct SShotgunParams
 	{
 		SShotgunParams() { Reset(); };
 		void Reset(const IItemParamsNode *params=0, bool defaultInit=true)
@@ -27,7 +27,7 @@ protected:
 		short	pelletdamage;
 		float spread;
 
-	} SShotgunParams;
+	};
 public:
 	CShotgun(void);
 	~CShotgun(void);

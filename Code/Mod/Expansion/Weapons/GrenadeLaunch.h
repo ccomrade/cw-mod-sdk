@@ -27,7 +27,7 @@ class CGrenadeLaunch :
 public:
 
 protected:
-	typedef struct SGrenadeLaunchParams
+	struct SGrenadeLaunchParams
 	{
 		SGrenadeLaunchParams() { Reset(); };
 		void Reset(const IItemParamsNode *params=0, bool defaultInit=true)
@@ -54,7 +54,7 @@ protected:
 		float shoot_delay;
     float reload_delay;
 
-	} SGrenadeLaunchParams;
+	};
 
 public:
 	CGrenadeLaunch();

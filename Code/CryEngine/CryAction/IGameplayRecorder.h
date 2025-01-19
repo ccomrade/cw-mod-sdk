@@ -3,7 +3,7 @@
 
 #pragma once
 
-typedef enum
+enum EGameplayEvent
 {
 	eGE_DiscreetSample = 0,
 	eGE_GameReset,
@@ -17,7 +17,7 @@ typedef enum
 	eGE_Scored,
 	eGE_Currency,
 	eGE_Rank,
-  eGE_Spectator,
+	eGE_Spectator,
 	eGE_ScoreReset,
 
 	eGE_AttachedAccessory,
@@ -51,7 +51,7 @@ typedef enum
 	eGE_LeftVehicle,
 
 	eGE_Last
-} EGameplayEvent;
+};
 
 
 struct GameplayEvent
