@@ -8,7 +8,7 @@ Description: Special firemode for FGL40 grenade launcher
 
 -------------------------------------------------------------------------
 History:
-- 10:10:2007   8:00 : Created by Denisz Polgár
+- 10:10:2007   8:00 : Created by Denisz Polgar
 
 *************************************************************************/
 #ifndef __GRENADE_LAUNCH_H__
