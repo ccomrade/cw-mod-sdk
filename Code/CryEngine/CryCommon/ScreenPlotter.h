@@ -5,7 +5,7 @@
 // -------------------------------------------------------------------------
 //  File name:   ScreenPlotter.h
 //  Version:     v1.00
-//  Created:     22/12/2005 by Jan Müller
+//  Created:     22/12/2005 by Jan Muller
 //  Compilers:   Visual Studio.NET 2003
 //  Description: 
 // -------------------------------------------------------------------------
