@@ -20,13 +20,68 @@ History:
 #include "Game.h"
 #include "HUD/HUD.h"
 
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+
+#define RESOURCE_CURSOR_AMBER 103
+#define RESOURCE_CURSOR_BLUE  104
+#define RESOURCE_CURSOR_GREEN 105
+#define RESOURCE_CURSOR_RED   106
+#define RESOURCE_CURSOR_WHITE 107
+
+static void ReloadCursor(ECrysisProfileColor color)
+{
+	HMODULE exe = GetModuleHandleA(nullptr);
+	HCURSOR cursor = nullptr;
+
+	switch (color)
+	{
+		case CrysisProfileColor_Amber:
+		{
+			cursor = LoadCursorA(exe, MAKEINTRESOURCEA(RESOURCE_CURSOR_AMBER));
+			break;
+		}
+		case CrysisProfileColor_Blue:
+		{
+			cursor = LoadCursorA(exe, MAKEINTRESOURCEA(RESOURCE_CURSOR_BLUE));
+			break;
+		}
+		case CrysisProfileColor_Green:
+		{
+			cursor = LoadCursorA(exe, MAKEINTRESOURCEA(RESOURCE_CURSOR_GREEN));
+			break;
+		}
+		case CrysisProfileColor_Cyan:
+		{
+			cursor = LoadCursorA(exe, MAKEINTRESOURCEA(RESOURCE_CURSOR_RED));
+			break;
+		}
+		case CrysisProfileColor_White:
+		{
+			cursor = LoadCursorA(exe, MAKEINTRESOURCEA(RESOURCE_CURSOR_WHITE));
+			break;
+		}
+		default:
+		{
+			// default green cursor
+			cursor = LoadCursorA(exe, MAKEINTRESOURCEA(RESOURCE_CURSOR_GREEN));
+			break;
+		}
+	}
+
+	if (cursor)
+	{
+		SetCursor(cursor);
+	}
+}
+
 //-----------------------------------------------------------------------------------------------------
 
-#define CRYSIS_PROFILE_COLOR_AMBER	"11886393"
-#define CRYSIS_PROFILE_COLOR_BLUE		"5079987"
-#define CRYSIS_PROFILE_COLOR_GREEN	"4481854"
-#define CRYSIS_PROFILE_COLOR_CYAN		"2320478"
-#define CRYSIS_PROFILE_COLOR_WHITE	"13553087"
+#define CRYSIS_PROFILE_COLOR_AMBER "11886393"
+#define CRYSIS_PROFILE_COLOR_BLUE "5079987"
+#define CRYSIS_PROFILE_COLOR_GREEN "4481854"
+#define CRYSIS_PROFILE_COLOR_CYAN "2320478"
+#define CRYSIS_PROFILE_COLOR_WHITE "13553087"
 
 
 //-----------------------------------------------------------------------------------------------------
@@ -51,18 +106,38 @@ COptionsManager::COptionsManager() : m_pPlayerProfileManager(NULL)
 
 //-----------------------------------------------------------------------------------------------------
 
-void COptionsManager::SetCrysisProfileColor(const char *szValue)
+void COptionsManager::SetCrysisProfileColor(const char* color)
 {
-				if(!strcmp(szValue,CRYSIS_PROFILE_COLOR_AMBER))	m_eCrysisProfileColor = CrysisProfileColor_Amber;
-	else	if(!strcmp(szValue,CRYSIS_PROFILE_COLOR_BLUE))	m_eCrysisProfileColor = CrysisProfileColor_Blue;
-	else	if(!strcmp(szValue,CRYSIS_PROFILE_COLOR_GREEN))	m_eCrysisProfileColor = CrysisProfileColor_Green;
-	else	if(!strcmp(szValue,CRYSIS_PROFILE_COLOR_CYAN))		m_eCrysisProfileColor = CrysisProfileColor_Cyan;
-	else	if(!strcmp(szValue,CRYSIS_PROFILE_COLOR_WHITE))	m_eCrysisProfileColor = CrysisProfileColor_White;
-	else CRY_ASSERT(0);
+	if (!color)
+	{
+		m_eCrysisProfileColor = CrysisProfileColor_Default;
+	}
+	else if (std::strcmp(color, CRYSIS_PROFILE_COLOR_AMBER) == 0)
+	{
+		m_eCrysisProfileColor = CrysisProfileColor_Amber;
+	}
+	else if (std::strcmp(color, CRYSIS_PROFILE_COLOR_BLUE) == 0)
+	{
+		m_eCrysisProfileColor = CrysisProfileColor_Blue;
+	}
+	else if (std::strcmp(color, CRYSIS_PROFILE_COLOR_GREEN) == 0)
+	{
+		m_eCrysisProfileColor = CrysisProfileColor_Green;
+	}
+	else if (std::strcmp(color, CRYSIS_PROFILE_COLOR_CYAN) == 0)
+	{
+		m_eCrysisProfileColor = CrysisProfileColor_Cyan;
+	}
+	else if (std::strcmp(color, CRYSIS_PROFILE_COLOR_WHITE) == 0)
+	{
+		m_eCrysisProfileColor = CrysisProfileColor_White;
+	}
+	else
+	{
+		m_eCrysisProfileColor = CrysisProfileColor_Default;
+	}
 
-	// Cursor is updated with WM_SETCURSOR, but this message is sent only when mouse moves. We force once
-	// the update so that the Apply button reflects the change without forcing the user to move his mouse
-	//CGameStartup::ForceCursorUpdate();
+	ReloadCursor(m_eCrysisProfileColor);
 }
 
 //-----------------------------------------------------------------------------------------------------
