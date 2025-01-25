@@ -17,7 +17,10 @@ History:
 
 #pragma once
 
+#include <memory>
+
 #include "INetworkService.h"
+#include "StlUtils.h"
 
 class CMPHub;
 
@@ -224,9 +227,9 @@ private:
 	bool										m_loggingIn;
 	SUserStats							m_stats;
 
-  std::auto_ptr<SBuddies>           m_buddies;
-  std::auto_ptr<SStoredServerLists> m_stroredServers;
-	std::auto_ptr<SUserInfoReader>		m_infoReader;
+  std::unique_ptr<SBuddies>           m_buddies;
+  std::unique_ptr<SStoredServerLists> m_stroredServers;
+	std::unique_ptr<SUserInfoReader>		m_infoReader;
   std::vector<SStorageQuery*>       m_queries;
 };
 
