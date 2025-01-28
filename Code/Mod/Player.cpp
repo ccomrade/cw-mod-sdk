@@ -2988,9 +2988,9 @@ void CPlayer::UpdateStats(float frameTime)
 
 			if (g_pGameCVars->pl_debugFallDamage != 0)
 			{
-				char* side = gEnv->bServer ? "Server" : "Client";
+				const char* side = gEnv->bServer ? "Server" : "Client";
 
-				char* color = "";
+				const char* color = "";
 				if (velFraction < 0.33f)
 					color = "$6"; // Yellow
 				else if (velFraction < 0.66f)
@@ -3007,8 +3007,8 @@ void CPlayer::UpdateStats(float frameTime)
 		{
 			if (m_stats.downwardsImpactVelocity > 0.5f)
 			{
-				char* side = gEnv->bServer ? "Server" : "Client";
-				char* color = "$3"; // Green
+				const char* side = gEnv->bServer ? "Server" : "Client";
+				const char* color = "$3"; // Green
 				CryLogAlways("%s[%s][%s] ImpactVelo=%3.2f, FallSpeed=%3.2f, FallDamage: NONE", 
 					color, side, GetEntity()->GetName(), m_stats.downwardsImpactVelocity, m_stats.fallSpeed);
 			}
@@ -3038,7 +3038,7 @@ void CPlayer::UpdateStats(float frameTime)
 	if (g_pGameCVars->pl_debugFallDamage == 2)
 	{
 		Vec3 pos = GetEntity()->GetWorldPos();
-		char* side = gEnv->bServer ? "Sv" : "Cl";
+		const char* side = gEnv->bServer ? "Sv" : "Cl";
 		CryLogAlways("[%s] liv.vel=%0.1f,%0.1f,%3.2f liv.velU=%0.1f,%0.1f,%3.2f impactVel=%3.2f posZ=%3.2f (liv.velReq=%0.1f,%0.1f,%3.2f) (fallspeed=%3.2f) gt=%3.3f, pt=%3.3f", 
 								side, 
 								livStat.vel.x, livStat.vel.y, livStat.vel.z, 

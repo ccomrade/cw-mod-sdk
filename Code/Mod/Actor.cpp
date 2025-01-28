@@ -2351,7 +2351,7 @@ int CActor::GetBoneID(int ID,int slot) const
 			return -1;
 
 		//TODO:this could be done much better
-		char* pBoneStr;
+		const char* pBoneStr = nullptr;
 		switch(ID)
 		{
 		case BONE_BIP01:	pBoneStr = "Bip01"; break;

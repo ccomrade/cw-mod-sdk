@@ -474,7 +474,7 @@ bool CMPHub::HandleFSCommand(const char* pCmd, const char* pArgs)
 			{
 				// don't cancel the download, so reshow the box.
 				SServerConnectionInfo* pInfo = g_pGame->GetIGameFramework()->GetStoredServerInfo();
-				ShowMapDownload(pInfo ? pInfo->levelDownloadURL : "");
+				ShowMapDownload(pInfo ? pInfo->levelDownloadURL.c_str() : "");
 			}
 			else if(!strcmp(pArgs, "cd_key_check_failed"))
 			{
